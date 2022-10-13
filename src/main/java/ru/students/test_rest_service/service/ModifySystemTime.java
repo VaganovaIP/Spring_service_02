@@ -11,7 +11,7 @@ import ru.students.test_rest_service.model.Response;
 public class ModifySystemTime implements MyModifyService{
     @Override
     public Response modify (Response response){
-        response.setSystemtime("");
+        response.setSystemTime("");
         return response;
     }
 }

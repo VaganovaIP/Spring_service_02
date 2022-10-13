@@ -20,7 +20,7 @@ public class Request {
     private String systemName;
 
     @NotBlank
-    private String systemtime;
+    private String systemTime;
 
     private String source;
 

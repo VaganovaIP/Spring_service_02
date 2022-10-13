@@ -19,24 +19,24 @@ import javax.validation.constraints.NotNull;
 public class MyController {
     private final MyModifyService myModifyService;
     @Autowired
-    public MyController(@Qualifier("ModifySystemMessage") MyModifyService myModifyService){
+    public MyController(@Qualifier("ModifySystemTime") MyModifyService myModifyService){
         this.myModifyService = myModifyService;
     }
     @PostMapping(value = "/feedback")
-    public ResponseEntity<Response> feedback(@RequestBody @NotNull Request request){
+    public ResponseEntity<Response> feedback(@RequestBody Request request){
 
         log.info("Входящий request : " + String.valueOf(request));
 
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
-                .systemtime(request.getSystemtime())
+                .systemTime(request.getSystemTime())
                 .code("success")
                 .errorCode("")
                 .errorMessage("")
                 .build();
         Response responseAfterModify = myModifyService.modify(response);
         log.info("Исходящий request : " + String.valueOf(response));
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(responseAfterModify, HttpStatus.OK);
     }
 }
